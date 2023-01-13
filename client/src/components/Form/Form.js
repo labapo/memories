@@ -3,9 +3,15 @@ import { TextField, Button, Typography, Paper } from '@material-ui/core';
 import useStyles from './style';
 import FileBase from 'react-file-base64';
 import { useDispatch } from 'react-redux';
-import { createPost } from "../../actions/posts";
+import { createPost, updatePost } from "../../actions/posts";
 
-const Form = () => {
+//get the current id. We'll need to click on the 3 dots at the top of the post to edit. That'll be the edit button
+//then we'll need to pass the id in order to edit the post to the form component
+//then the form is going to change form "creating a memory" to "editing a memory"
+
+
+
+const Form = ( {currentId, setCurrentId} ) => {
     const [postData, setPostData] = useState({
         creator: '',
         title: "",
@@ -19,8 +25,12 @@ const Form = () => {
     const handleSubmit = (e) => {
         //not to get the refresh in the browser
         e.preventDefault();
+        //
+        if(currentId) {
+            dispatch(updatePost(currentId, postData))
+        } else {
         //dispatch an action
-        dispatch(createPost(postData))
+        dispatch(createPost(postData))};
     };
     const clear = () => {};
     return (

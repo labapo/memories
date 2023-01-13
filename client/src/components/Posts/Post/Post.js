@@ -14,7 +14,8 @@ import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 //import so we can use for time stuffs
 import moment from "moment";
 
-const Post = ({ post }) => {
+
+const Post = ({ post, setCurrentId }) => {
   const classes = useStyles();
   return (
     <Card className={classes.card}>
@@ -30,8 +31,12 @@ const Post = ({ post }) => {
                     .fromNow basically says, X minutes/seconds ago */}
           {moment(post.createdAt).fromNow()}
         </Typography>
+        </div>
         <div className={classes.overlay2}>
-          <Button style={{ color: "white" }} size="small" onClick={() => {}}>
+          <Button 
+            style={{ color: "white" }} 
+            size="small" 
+            onClick={() => setCurrentId(post._id)}>
             <MoreHorizIcon fontsize="default" />
           </Button>
         </div>
@@ -60,7 +65,7 @@ const Post = ({ post }) => {
                 Delete
             </Button>
         </CardActions>
-        </div>
+        
     </Card>
   );
 };

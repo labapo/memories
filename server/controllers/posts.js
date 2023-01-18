@@ -37,9 +37,10 @@ export const updatePost = async (req, res) => {
     //create a check to see if the id is a mongo id. If it's not valid, then return a 404 message
     if(!mongoose.Types.ObjectId.isValid(_id))
     return res.status(404).send('No post with that id');
+
     //if there is a post with the id then do this
     //passing post and specifying that new = true so that we can receive the updated version of that post
-    const updatedPost = await PostMessage.findByIdAndUpdate(_id, post, { new: true});
+    const updatedPost = await PostMessage.findByIdAndUpdate(_id, {...post,_id}, { new: true});
     //since the right side of the = sign is an asyc action, we have to put in await
     res.json(updatedPost)
     

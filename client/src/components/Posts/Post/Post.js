@@ -37,7 +37,7 @@ const Post = ({ post, setCurrentId }) => {
             style={{ color: "white" }} 
             size="small" 
             onClick={() => setCurrentId(post._id)}>
-            <MoreHorizIcon fontsize="default" />
+            <MoreHorizIcon fontSize="medium" />
           </Button>
         </div>
         <div className={classes.details}>
@@ -47,6 +47,9 @@ const Post = ({ post, setCurrentId }) => {
             {post.tags.map((tag) => `#${tag} `)}
           </Typography>
         </div>
+        <Typography className={classes.title} variant="h5" gutterBottom>
+            {post.title}
+          </Typography>
         <CardContent>
           <Typography className={classes.title} variant="h5" gutterBottom>
             {post.message}

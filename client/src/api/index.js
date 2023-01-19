@@ -1,7 +1,7 @@
 import axios from 'axios'; 
 
 //backend data url
-const url = 'http://localhost:3000/posts';
+const url = 'https://memories-backend-c6ay.onrender.com/posts';
 
 export const fetchPosts =  () => axios.get(url);
 //take in 1 param which is the entire "new post"

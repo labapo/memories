@@ -2,12 +2,14 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
-
+import dotenv from 'dotenv';
 //import routes from post.js
 import postRoutes from './routes/posts.js';
 
 //initialize the express 
 const app = express();
+//initialize dotenv
+dotenv.config();
 
 //middleware
 

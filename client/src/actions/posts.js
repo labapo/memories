@@ -25,7 +25,7 @@ export const updatePost = (id, post) => async (dispatch) => {
     try {
         // returning updated memory or the post
         const {data} = await api.updatePost(id, post);
-        dispatch({type: ' UPDATE', payload: data});
+        dispatch({type: 'UPDATE', payload: data});
     } catch (error) {
         console.log(error.message)
     }
@@ -36,6 +36,16 @@ export const deletePost = (id) => async (dispatch) => {
         await api.deletePost(id);
         dispatch({ type: 'DELETE', payload: id});
 
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const likePost = (id) => async (dispatch) => {
+    try {
+        //get data of newly updated post
+        const {data} = await api.likePost(id);
+        dispatch({type: 'UPDATE', payload: data});
     } catch (error) {
         console.log(error);
     }

@@ -53,6 +53,16 @@ export const deletePost = async (req, res) => {
     return res.status(404).send(`No Post with id: ${id}`);
     await PostMessage.findByIdAndRemove(id);
     res.json({ message: 'Post deleted successfully.'})
+}
 
+export const likePost = async (req, res) => {
+    const { id } = req.params;
+    if(!mongoose.Types.ObjectId.isValid(id))
+    return res.status(404).send(`No Post with id: ${id}`);
+    //create a variable that will find the post by ID
+    const post = await PostMessage.findById(id);
+    //then we update the post and increase the likes by 1
+    const updatedPost = await PostMessage.findByIdAndUpdate(id, { likeCount: post.likeCount + 1}, { new: true });
+    res.json(updatedPost);
 }
 

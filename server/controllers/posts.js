@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import PostMessage from '../models/postMessage.js';
 
+
 export const getPosts = async (req, res) => {
     try {
         //retrieve all the posts that's in the database
@@ -36,7 +37,7 @@ export const updatePost = async (req, res) => {
 
     //create a check to see if the id is a mongo id. If it's not valid, then return a 404 message
     if(!mongoose.Types.ObjectId.isValid(_id))
-    return res.status(404).send('No post with that id');
+    return res.status(404).send(`No post with id: ${id}`);
 
     //if there is a post with the id then do this
     //passing post and specifying that new = true so that we can receive the updated version of that post
@@ -45,3 +46,13 @@ export const updatePost = async (req, res) => {
     res.json(updatedPost)
     
 }
+
+export const deletePost = async (req, res) => {
+    const { id } = req.params;
+    if(!mongoose.Types.ObjectId.isValid(id))
+    return res.status(404).send(`No Post with id: ${id}`);
+    await PostMessage.findByIdAndRemove(id);
+    res.json({ message: 'Post deleted successfully.'})
+
+}
+
